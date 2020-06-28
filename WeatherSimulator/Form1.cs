@@ -44,14 +44,19 @@ namespace WeatherSimulator
 
             var day = Time / 24;
 
-            timeLabel.Text = "Время: " + (day + 1) + " день, " + (Time - day * 24) + " часа";
-            stateChangeTime.Text = "Изменится в: " + (simulator.ChangeTime - day * 24) + " часа";
+            timeLabel.Text = "Время: " + (day + 1) + " день, " + (Time - day * 24) + " ч.";
+            stateChangeTime.Text = "Изменится в: " + (simulator.ChangeTime - day * 24) + " ч.";
 
             chart1.Series[0].Points.Clear();
             for (int i = 0; i < 3; i++)
             {
                 chart1.Series[0].Points.AddXY(i + 1, simulator.Probabilities[i]);
             }
+
+            averageLabel.Text = "Average: " + simulator.Average.ToString("F3") + " (error = " + Math.Round(simulator.AverageError * 100) + "%)";
+            varianceLabel.Text = "Variance: " + simulator.Variance.ToString("F3") + " (error = " + Math.Round(simulator.VarianceError * 100) + "%)";
+
+            chiSquareLabel.Text = "ChiSquared: " + simulator.ChiSquare.ToString("F3") + " <= " + simulator.CriticalValue.ToString("F3") + " is " + simulator.ChiSquareTest;
         }
     }
 }

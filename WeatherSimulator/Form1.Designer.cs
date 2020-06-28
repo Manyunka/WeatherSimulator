@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -40,8 +40,11 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
             this.stateChangeTime = new System.Windows.Forms.Label();
+            this.averageLabel = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.varianceLabel = new System.Windows.Forms.Label();
+            this.chiSquareLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -73,22 +76,22 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Right;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(261, 0);
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(309, 0);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Empirical";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Theoretical";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Empirical";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Theoretical";
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(451, 441);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -96,13 +99,16 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.stateChangeTime);
+            this.panel1.Controls.Add(this.chiSquareLabel);
+            this.panel1.Controls.Add(this.varianceLabel);
+            this.panel1.Controls.Add(this.averageLabel);
             this.panel1.Controls.Add(this.timeLabel);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.stateLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(262, 441);
+            this.panel1.Size = new System.Drawing.Size(303, 441);
             this.panel1.TabIndex = 0;
             // 
             // stateChangeTime
@@ -114,10 +120,19 @@
             this.stateChangeTime.TabIndex = 2;
             this.stateChangeTime.Text = "Изменится в";
             // 
+            // averageLabel
+            // 
+            this.averageLabel.AutoSize = true;
+            this.averageLabel.Location = new System.Drawing.Point(13, 372);
+            this.averageLabel.Name = "averageLabel";
+            this.averageLabel.Size = new System.Drawing.Size(68, 20);
+            this.averageLabel.TabIndex = 2;
+            this.averageLabel.Text = "Average";
+            // 
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(12, 412);
+            this.timeLabel.Location = new System.Drawing.Point(13, 178);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(58, 20);
             this.timeLabel.TabIndex = 2;
@@ -131,11 +146,29 @@
             this.imageList1.Images.SetKeyName(1, "sky.png");
             this.imageList1.Images.SetKeyName(2, "cloudy.png");
             // 
+            // varianceLabel
+            // 
+            this.varianceLabel.AutoSize = true;
+            this.varianceLabel.Location = new System.Drawing.Point(13, 392);
+            this.varianceLabel.Name = "varianceLabel";
+            this.varianceLabel.Size = new System.Drawing.Size(72, 20);
+            this.varianceLabel.TabIndex = 2;
+            this.varianceLabel.Text = "Variance";
+            // 
+            // chiSquareLabel
+            // 
+            this.chiSquareLabel.AutoSize = true;
+            this.chiSquareLabel.Location = new System.Drawing.Point(13, 412);
+            this.chiSquareLabel.Name = "chiSquareLabel";
+            this.chiSquareLabel.Size = new System.Drawing.Size(84, 20);
+            this.chiSquareLabel.TabIndex = 2;
+            this.chiSquareLabel.Text = "ChiSquare";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 441);
+            this.ClientSize = new System.Drawing.Size(760, 441);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.chart1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -160,6 +193,9 @@
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label stateChangeTime;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label averageLabel;
+        private System.Windows.Forms.Label varianceLabel;
+        private System.Windows.Forms.Label chiSquareLabel;
     }
 }
 
